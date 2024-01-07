@@ -144,7 +144,7 @@ LEFT_BUMPER_NOT_PRESSED
 		
 		BX LR
 
-;; Lis l'état du bumper de gauche
+;; read left bumper's state
 BUMPER_GAUCHE_READSTATE
 		LDR r2, =LEFT_BUMPER_ST_ADR ;; load adress dedicated to left bumper's state
 		LDR r1, =GPIO_PORTE_BASE + (BROCHE1<<2)
@@ -155,7 +155,7 @@ BUMPER_GAUCHE_READSTATE
 		
 		BX LR
 
-;; Lis l'état du bumper de droite
+;; read right bumper's state
 BUMPER_DROIT_READSTATE
 		LDR r2, =RIGHT_BUMPER_ST_ADR ;; load adress dedicated to right bumper's state
 		LDR r1, =GPIO_PORTE_BASE + (BROCHE0<<2)
