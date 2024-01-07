@@ -80,13 +80,13 @@ BUMPERS_INIT
 		
 		; Initialize BROCHE0_1 (BROCHE0 and BROCHE1)
 		LDR r0, = BROCHE0_1
-        STR r0, [r7]
+        	STR r0, [r7]
 		
 		LDR r7, = GPIO_PORTE_BASE + GPIO_O_DEN
 		
 		; Enable BROCHE0_1 (BROCHE0 and BROCHE1)
 		LDR r0, = BROCHE0_1
-        STR r0, [r7]  
+        	STR r0, [r7]  
 
 		PUSH {LR}
 		BL INIT_BUMPERS_ADRESS
