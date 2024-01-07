@@ -10,7 +10,7 @@ BROCHE0				EQU		0x01
 BROCHE1				EQU		0x02
 BROCHE0_1			EQU		0x03
 	
-BUMPERS_DATA_BASE      EQU     0x20000000
+BUMPERS_DATA_BASE      EQU     0x20000100
 BUMPER_SW_OFFSET       EQU     0x00 ;; Is on/off option
 BUMPER_CT_OFFSET       EQU     0x05 ;; Counter option
 NEXT_BUMPER_OFFSET     EQU     0x10 ;; right, left
