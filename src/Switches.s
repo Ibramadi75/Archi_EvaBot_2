@@ -10,7 +10,7 @@ BROCHE6             EQU     0x40
 BROCHE7             EQU     0x80
 BROCHE6_7           EQU     0xC0
 
-SWITCHES_DATA_BASE  EQU     0x20001000
+SWITCHES_DATA_BASE  EQU     0x20000200
 SWITCH_SW_OFFSET    EQU     0x00 ;; On/off option
 SWITCH_CNT_OFFSET   EQU     0x05 ;; Counter option
 NEXT_SWITCH_OFFSET  EQU     0x10 ;; Right, left
