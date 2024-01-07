@@ -29,7 +29,7 @@ SYSCTL_PERIPH_GPIO		EQU		0x400FE108
 		IMPORT SECOND_SWITCH_ST_ADR ;; store the state of the switch one
 		IMPORT FIRST_SWITCH_ST_ADR ;; store the state of the switch two
 			
-		IMPORT INIT_UTIL_ADRESS
+		IMPORT INIT_UTIL_address
 __main
 		ldr r6, = SYSCTL_PERIPH_GPIO
 		mov r0, #0x38 ;; (0x38 == 0b111000)
@@ -45,7 +45,7 @@ __main
 		BL LEDs_INIT
 		BL SWITCHES_INIT
 		
-		BL INIT_UTIL_ADRESS
+		BL INIT_UTIL_address
 		
 SETUP	;; Start of the SETUP phase
 		BL LEDs_ON

@@ -38,7 +38,7 @@ DISTANCE_TO_TIME_IN_CYCLE
 		
 		BX	LR
 
-;; Wait the time asked by the user, which must be stored in TRAVEL_TIME_IN_CYCLE adress
+;; Wait the time asked by the user, which must be stored in TRAVEL_TIME_IN_CYCLE address
 WAIT_ASKED_TIME_IN_CYCLE
 		LDR r3, =TRAVEL_TIME_IN_CYCLE
 		STR r1, [r3]

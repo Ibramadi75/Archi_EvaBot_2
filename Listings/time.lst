@@ -1,0 +1,198 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             |.text|, CODE, READONLY
+    2 00000000         
+    3 00000000 004FFFFF 
+                       ONE_SECOND_VAL
+                               EQU              0x004FFFFF  ;; Nombre de tours 
+                                                            pour une seconde
+    4 00000000 000BA000 
+                       TIME_FOR_ONE_CM_VAL
+                               EQU              0x000BA000  ;; Nombre de tours 
+                                                            nécéssaires pour 
+                                                            parcourir 1cm
+    5 00000000 20000001 
+                       TRAVEL_TIME_IN_CYCLE
+                               EQU              0x20000001  ;; Durée du voyage
+                                                             en nombre de cycle
+                                                            
+    6 00000000         
+    7 00000000                 ENTRY
+    8 00000000                 EXPORT           TRAVEL_TIME_IN_CYCLE
+    9 00000000         
+   10 00000000                 EXPORT           DISTANCE_TO_TIME_IN_CYCLE
+   11 00000000                 EXPORT           WAIT_ASKED_TIME_IN_CYCLE
+   12 00000000                 EXPORT           WAIT_R5_SECONDS
+   13 00000000         
+   14 00000000                 IMPORT           TRAVEL_DISTANCE_CM_ADR
+   15 00000000         
+   16 00000000         ;; wait x second(s), x = r5
+   17 00000000         WAIT_R5_SECONDS
+   18 00000000 490A            LDR              r1, =ONE_SECOND_VAL ;; store va
+                                                            lue for one second
+   19 00000002 FB05 F501       MUL              r5, r5, r1  ;; Multiply asked s
+                                                            econds by value for
+                                                             one second
+   20 00000006         
+   21 00000006         wait_r5_seconds_loop
+   22 00000006 3D01            SUBS             r5, #1
+   23 00000008 D1FD            BNE              wait_r5_seconds_loop
+   24 0000000A         
+   25 0000000A 4770            BX               LR
+   26 0000000C         
+   27 0000000C         ;; convert asked distance in cm to a time in number of c
+                       ycle
+   28 0000000C         DISTANCE_TO_TIME_IN_CYCLE
+   29 0000000C 4808            LDR              r0, =TRAVEL_DISTANCE_CM_ADR
+   30 0000000E 6801            LDR              r1, [r0]
+   31 00000010         
+   32 00000010 F44F 223A       MOV              r2, #TIME_FOR_ONE_CM_VAL
+   33 00000014         
+   34 00000014 FB01 F102       MUL              r1, r1, r2  ;; give x second(s)
+                                                            , x = r8
+   35 00000018         
+   36 00000018 4B06            LDR              r3, =TRAVEL_TIME_IN_CYCLE
+   37 0000001A 6019            STR              r1, [r3]
+   38 0000001C         
+   39 0000001C 4770            BX               LR
+   40 0000001E         
+   41 0000001E         ;; Wait the time asked by the user, which must be stored
+                        in TRAVEL_TIME_IN_CYCLE address
+   42 0000001E         WAIT_ASKED_TIME_IN_CYCLE
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   43 0000001E 4B05            LDR              r3, =TRAVEL_TIME_IN_CYCLE
+   44 00000020 6019            STR              r1, [r3]
+   45 00000022         
+   46 00000022 F101 0101       ADD              r1, r1, #1  ;; Add 1 prevent to
+                                                             sub 1 of 0, that g
+                                                            ive 0xFFFFFFFF
+   47 00000026         
+   48 00000026         wait_asked_time_in_cycle_loop
+   49 00000026 3901            SUBS             r1, #1
+   50 00000028 D1FD            BNE              wait_asked_time_in_cycle_loop
+   51 0000002A         
+   52 0000002A 4770            BX               LR
+   53 0000002C         
+   54 0000002C                 END
+              004FFFFF 
+              00000000 
+              20000001 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --depend=.\ob
+jects\time.d -o.\objects\time.o -I.\RTE\_Target_1 -IC:\Users\ibmad\AppData\Loca
+l\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include -IC:\Users\ibmad\AppData\Local\A
+rm\Packs\Keil\LM3S_DFP\1.1.0\Device\Include --predefine="__EVAL SETA 1" --prede
+fine="__UVISION_VERSION SETA 528" --predefine="_RTE_ SETA 1" --predefine="LM3S9
+B92 SETA 1" --list=.\listings\time.lst src\Time.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 1 in file src\Time.s
+   Uses
+      None
+Comment: .text unused
+DISTANCE_TO_TIME_IN_CYCLE 0000000C
+
+Symbol: DISTANCE_TO_TIME_IN_CYCLE
+   Definitions
+      At line 28 in file src\Time.s
+   Uses
+      At line 10 in file src\Time.s
+Comment: DISTANCE_TO_TIME_IN_CYCLE used once
+WAIT_ASKED_TIME_IN_CYCLE 0000001E
+
+Symbol: WAIT_ASKED_TIME_IN_CYCLE
+   Definitions
+      At line 42 in file src\Time.s
+   Uses
+      At line 11 in file src\Time.s
+Comment: WAIT_ASKED_TIME_IN_CYCLE used once
+WAIT_R5_SECONDS 00000000
+
+Symbol: WAIT_R5_SECONDS
+   Definitions
+      At line 17 in file src\Time.s
+   Uses
+      At line 12 in file src\Time.s
+Comment: WAIT_R5_SECONDS used once
+wait_asked_time_in_cycle_loop 00000026
+
+Symbol: wait_asked_time_in_cycle_loop
+   Definitions
+      At line 48 in file src\Time.s
+   Uses
+      At line 50 in file src\Time.s
+Comment: wait_asked_time_in_cycle_loop used once
+wait_r5_seconds_loop 00000006
+
+Symbol: wait_r5_seconds_loop
+   Definitions
+      At line 21 in file src\Time.s
+   Uses
+      At line 23 in file src\Time.s
+Comment: wait_r5_seconds_loop used once
+6 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+ONE_SECOND_VAL 004FFFFF
+
+Symbol: ONE_SECOND_VAL
+   Definitions
+      At line 3 in file src\Time.s
+   Uses
+      At line 18 in file src\Time.s
+Comment: ONE_SECOND_VAL used once
+TIME_FOR_ONE_CM_VAL 000BA000
+
+Symbol: TIME_FOR_ONE_CM_VAL
+   Definitions
+      At line 4 in file src\Time.s
+   Uses
+      At line 32 in file src\Time.s
+Comment: TIME_FOR_ONE_CM_VAL used once
+TRAVEL_TIME_IN_CYCLE 20000001
+
+Symbol: TRAVEL_TIME_IN_CYCLE
+   Definitions
+      At line 5 in file src\Time.s
+   Uses
+      At line 8 in file src\Time.s
+      At line 36 in file src\Time.s
+      At line 43 in file src\Time.s
+
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+TRAVEL_DISTANCE_CM_ADR 00000000
+
+Symbol: TRAVEL_DISTANCE_CM_ADR
+   Definitions
+      At line 14 in file src\Time.s
+   Uses
+      At line 29 in file src\Time.s
+Comment: TRAVEL_DISTANCE_CM_ADR used once
+1 symbol
+346 symbols in table

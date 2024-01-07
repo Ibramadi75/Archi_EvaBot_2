@@ -13,12 +13,12 @@ TRAVEL_DISTANCE_CM_ADR	EQU		0x20000000 ;; Distance à parcourir en cm
 			
 		IMPORT FIRST_SWITCH_CT_ADR
 			
-		EXPORT INIT_UTIL_ADRESS
+		EXPORT INIT_UTIL_address
 
-;; a label to use for initializing all program's adress values to 0
-INIT_UTIL_ADRESS
+;; a label to use for initializing all program's address values to 0
+INIT_UTIL_address
 		MOV r0, #0
-		; Charger l'adresse de TRAVEL_DISTANCE_CM_ADR et y stocker 0
+		; Charger l'addresse de TRAVEL_DISTANCE_CM_ADR et y stocker 0
 		LDR r1, =TRAVEL_DISTANCE_CM_ADR
 		STR r0, [r1]
 		
@@ -56,8 +56,8 @@ INTERACTIONS_TO_DISTANCE
 		
 		BX LR
 
-;; to use, store an adress in r1 containing an adress you want to increment
-;; take the value stored in adress which is stored in r1, increment 1 to it value, put the new value in the adress
+;; to use, store an address in r1 containing an address you want to increment
+;; take the value stored in address which is stored in r1, increment 1 to it value, put the new value in the address
 INCR_VAL_STORED_IN_R1_ADR
 		LDR r2, [r1]
 		ADD r2, #0x01

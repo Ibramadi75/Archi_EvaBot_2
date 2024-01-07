@@ -18,33 +18,35 @@ ARM Macro Assembler    Page 1
    12 00000000                 EXPORT           MOTORS_OFF
    13 00000000                 EXPORT           FORWARD_MOTION
    14 00000000         
-   15 00000000         MOTORS_ON                            ;; launch both righ
-                                                            t and left motors
-   16 00000000 B500            PUSH             {LR}
-   17 00000002 F7FF FFFE       BL               MOTEUR_DROIT_ON
-   18 00000006 F7FF FFFE       BL               MOTEUR_GAUCHE_ON
-   19 0000000A F85D EB04       POP              {LR}
-   20 0000000E         
-   21 0000000E 4770            BX               LR
-   22 00000010         
-   23 00000010         MOTORS_OFF                           ;; extinct both rig
-                                                            ht and left motors
-   24 00000010 B500            PUSH             {LR}
-   25 00000012 F7FF FFFE       BL               MOTEUR_DROIT_OFF
-   26 00000016 F7FF FFFE       BL               MOTEUR_GAUCHE_OFF
-   27 0000001A F85D EB04       POP              {LR}
-   28 0000001E         
-   29 0000001E 4770            BX               LR
-   30 00000020         
-   31 00000020         FORWARD_MOTION                       ;; go forward
-   32 00000020 B500            PUSH             {LR}
-   33 00000022 F7FF FFFE       BL               MOTEUR_GAUCHE_AVANT
-   34 00000026 F7FF FFFE       BL               MOTEUR_DROIT_AVANT
-   35 0000002A F85D EB04       POP              {LR}
-   36 0000002E         
-   37 0000002E 4770            BX               LR
-   38 00000030         
-   39 00000030                 END
+   15 00000000         ;; launch both right and left motors
+   16 00000000         MOTORS_ON
+   17 00000000 B500            PUSH             {LR}
+   18 00000002 F7FF FFFE       BL               MOTEUR_DROIT_ON
+   19 00000006 F7FF FFFE       BL               MOTEUR_GAUCHE_ON
+   20 0000000A F85D EB04       POP              {LR}
+   21 0000000E         
+   22 0000000E 4770            BX               LR
+   23 00000010         
+   24 00000010         ;; extinct both right and left motors
+   25 00000010         MOTORS_OFF
+   26 00000010         
+   27 00000010 B500            PUSH             {LR}
+   28 00000012 F7FF FFFE       BL               MOTEUR_DROIT_OFF
+   29 00000016 F7FF FFFE       BL               MOTEUR_GAUCHE_OFF
+   30 0000001A F85D EB04       POP              {LR}
+   31 0000001E         
+   32 0000001E 4770            BX               LR
+   33 00000020         
+   34 00000020         ;; Make the bot going forward
+   35 00000020         FORWARD_MOTION
+   36 00000020 B500            PUSH             {LR}
+   37 00000022 F7FF FFFE       BL               MOTEUR_GAUCHE_AVANT
+   38 00000026 F7FF FFFE       BL               MOTEUR_DROIT_AVANT
+   39 0000002A F85D EB04       POP              {LR}
+   40 0000002E         
+   41 0000002E 4770            BX               LR
+   42 00000030         
+   43 00000030                 END
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --depend=.\ob
 jects\motors.d -o.\objects\motors.o -I.\RTE\_Target_1 -IC:\Users\ibmad\AppData\
 Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include -IC:\Users\ibmad\AppData\Loc
@@ -69,7 +71,7 @@ FORWARD_MOTION 00000020
 
 Symbol: FORWARD_MOTION
    Definitions
-      At line 31 in file src\Motors.s
+      At line 35 in file src\Motors.s
    Uses
       At line 13 in file src\Motors.s
 Comment: FORWARD_MOTION used once
@@ -77,7 +79,7 @@ MOTORS_OFF 00000010
 
 Symbol: MOTORS_OFF
    Definitions
-      At line 23 in file src\Motors.s
+      At line 25 in file src\Motors.s
    Uses
       At line 12 in file src\Motors.s
 Comment: MOTORS_OFF used once
@@ -85,7 +87,7 @@ MOTORS_ON 00000000
 
 Symbol: MOTORS_ON
    Definitions
-      At line 15 in file src\Motors.s
+      At line 16 in file src\Motors.s
    Uses
       At line 11 in file src\Motors.s
 Comment: MOTORS_ON used once
@@ -102,7 +104,7 @@ Symbol: MOTEUR_DROIT_AVANT
    Definitions
       At line 8 in file src\Motors.s
    Uses
-      At line 34 in file src\Motors.s
+      At line 38 in file src\Motors.s
 Comment: MOTEUR_DROIT_AVANT used once
 MOTEUR_DROIT_OFF 00000000
 
@@ -110,7 +112,7 @@ Symbol: MOTEUR_DROIT_OFF
    Definitions
       At line 5 in file src\Motors.s
    Uses
-      At line 25 in file src\Motors.s
+      At line 28 in file src\Motors.s
 Comment: MOTEUR_DROIT_OFF used once
 MOTEUR_DROIT_ON 00000000
 
@@ -118,7 +120,7 @@ Symbol: MOTEUR_DROIT_ON
    Definitions
       At line 4 in file src\Motors.s
    Uses
-      At line 17 in file src\Motors.s
+      At line 18 in file src\Motors.s
 Comment: MOTEUR_DROIT_ON used once
 MOTEUR_GAUCHE_AVANT 00000000
 
@@ -126,7 +128,7 @@ Symbol: MOTEUR_GAUCHE_AVANT
    Definitions
       At line 9 in file src\Motors.s
    Uses
-      At line 33 in file src\Motors.s
+      At line 37 in file src\Motors.s
 Comment: MOTEUR_GAUCHE_AVANT used once
 MOTEUR_GAUCHE_OFF 00000000
 
@@ -134,7 +136,7 @@ Symbol: MOTEUR_GAUCHE_OFF
    Definitions
       At line 7 in file src\Motors.s
    Uses
-      At line 26 in file src\Motors.s
+      At line 29 in file src\Motors.s
 Comment: MOTEUR_GAUCHE_OFF used once
 MOTEUR_GAUCHE_ON 00000000
 
@@ -142,7 +144,7 @@ Symbol: MOTEUR_GAUCHE_ON
    Definitions
       At line 6 in file src\Motors.s
    Uses
-      At line 18 in file src\Motors.s
+      At line 19 in file src\Motors.s
 Comment: MOTEUR_GAUCHE_ON used once
 6 symbols
 344 symbols in table

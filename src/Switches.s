@@ -50,13 +50,13 @@ SWITCHES_INIT
 		STR r0, [r7]     
 		
 		PUSH {LR}
-		BL INIT_SWITCHES_ADRESS
+		BL INIT_SWITCHES_address
 		POP {LR}
 		
 		BX LR
 
 ;; Set addresses related to switch usage to 0
-INIT_SWITCHES_ADRESS
+INIT_SWITCHES_address
 		MOV r0, #0
 		; Load the address of FIRST_SWITCH_ST_ADR and store 0
 		LDR r1, =FIRST_SWITCH_ST_ADR
@@ -108,7 +108,7 @@ SECOND_SWITCH_NOT_PRESSED
 		POP {LR}
 		BX LR
 
-;; Read switch 1 state, set one in the dedicated state adress if is pressed, 0 if not
+;; Read switch 1 state, set one in the dedicated state address if is pressed, 0 if not
 FIRST_SWITCH_READSTATE
 		LDR r2, =FIRST_SWITCH_ST_ADR
 		LDR r1, =GPIO_PORTD_BASE + (BROCHE6<<2)
@@ -118,7 +118,7 @@ FIRST_SWITCH_READSTATE
 		POP {LR}
 		BX LR
 
-;; Read switch 2 state, set one in the dedicated state adress if is pressed, 0 if not
+;; Read switch 2 state, set one in the dedicated state address if is pressed, 0 if not
 SECOND_SWITCH_READSTATE
 		LDR r2, =SECOND_SWITCH_ST_ADR
 		LDR r1, =GPIO_PORTD_BASE + (BROCHE7<<2)

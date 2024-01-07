@@ -40,7 +40,7 @@ RIGHT_BUMPER_CT_ADR    EQU     RIGHT_BUMPER_BASE + BUMPER_CT_OFFSET
 			
 		EXPORT BUMPERS_INIT
 			
-		EXPORT INIT_BUMPERS_ADRESS
+		EXPORT INIT_BUMPERS_address
 			
 		IMPORT LED_GAUCHE_ON
 		IMPORT LED_GAUCHE_OFF
@@ -53,28 +53,28 @@ RIGHT_BUMPER_CT_ADR    EQU     RIGHT_BUMPER_BASE + BUMPER_CT_OFFSET
 			
 		IMPORT INCR_VAL_STORED_IN_R1_ADR
 
-;; Put to 0 values of bumper's dedicated adress
-INIT_BUMPERS_ADRESS
+;; Put to 0 values of bumper's dedicated address
+INIT_BUMPERS_address
 		MOV r0, #0
-		; Charger l'adresse de LEFT_BUMPER_ST_ADR et stocker 0
+		; Charger l'addresse de LEFT_BUMPER_ST_ADR et stocker 0
 		LDR r1, =LEFT_BUMPER_ST_ADR
 		STR r0, [r1]
 
-		; Charger l'adresse de RIGHT_BUMPER_ST_ADR et stocker 0
+		; Charger l'addresse de RIGHT_BUMPER_ST_ADR et stocker 0
 		LDR r1, =RIGHT_BUMPER_ST_ADR
 		STR r0, [r1]
 
-		; Charger l'adresse de LEFT_BUMPER_CT_ADR et stocker 0
+		; Charger l'addresse de LEFT_BUMPER_CT_ADR et stocker 0
 		LDR r1, =LEFT_BUMPER_CT_ADR
 		STR r0, [r1]
 
-		; Charger l'adresse de RIGHT_BUMPER_CT_ADR et stocker 0
+		; Charger l'addresse de RIGHT_BUMPER_CT_ADR et stocker 0
 		LDR r1, =RIGHT_BUMPER_CT_ADR
 		STR r0, [r1]
 		
 		BX LR
 
-;; Init bumpers and their adress
+;; Init bumpers and their address
 BUMPERS_INIT
 		LDR r7, = GPIO_PORTE_BASE + GPIO_I_PUR
 		
@@ -89,7 +89,7 @@ BUMPERS_INIT
         	STR r0, [r7]  
 
 		PUSH {LR}
-		BL INIT_BUMPERS_ADRESS
+		BL INIT_BUMPERS_address
 		POP {LR}
 		
 		BX LR
@@ -146,7 +146,7 @@ LEFT_BUMPER_NOT_PRESSED
 
 ;; read left bumper's state
 BUMPER_GAUCHE_READSTATE
-		LDR r2, =LEFT_BUMPER_ST_ADR ;; load adress dedicated to left bumper's state
+		LDR r2, =LEFT_BUMPER_ST_ADR ;; load address dedicated to left bumper's state
 		LDR r1, =GPIO_PORTE_BASE + (BROCHE1<<2)
 		
 		PUSH {LR}
@@ -157,7 +157,7 @@ BUMPER_GAUCHE_READSTATE
 
 ;; read right bumper's state
 BUMPER_DROIT_READSTATE
-		LDR r2, =RIGHT_BUMPER_ST_ADR ;; load adress dedicated to right bumper's state
+		LDR r2, =RIGHT_BUMPER_ST_ADR ;; load address dedicated to right bumper's state
 		LDR r1, =GPIO_PORTE_BASE + (BROCHE0<<2)
 
 DEFINE_STATE
