@@ -1,8 +1,8 @@
 		AREA    |.text|, CODE, READONLY
 			
-ONE_SECOND_VAL			EQU		0x004FFFFF ;; Nombre de tours pour une seconde
-TIME_FOR_ONE_CM_VAL   	EQU     0x000BA000 ;; Nombre de tours n?c?ssaires pour parcourir 1cm
-TRAVEL_TIME_IN_CYCLE 	EQU		0x20000001 ;; Dur�e du voyage en nombre de cycle
+ONE_SECOND_VAL		EQU	0x004FFFFF ;; Nombre de tours pour une seconde
+TIME_FOR_ONE_CM_VAL   	EQU     0x000BA000 ;; Nombre de tours nécéssaires pour parcourir 1cm
+TRAVEL_TIME_IN_CYCLE 	EQU	0x20000001 ;; Durée du voyage en nombre de cycle
 
 		ENTRY
 		EXPORT TRAVEL_TIME_IN_CYCLE
