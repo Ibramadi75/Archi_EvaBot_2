@@ -1,0 +1,216 @@
+Component: ARM Compiler 6.12 Tool: armlink [5d624300]
+
+==============================================================================
+
+Section Cross References
+
+    utils.o(.text) refers (Special) to motors.o(.text) for MOTORS_OFF
+    utils.o(.text) refers to leds.o(.text) for LEDs_ON
+    utils.o(.text) refers to bumpers.o(.text) for BUMPER_DROIT_READSTATE
+    utils.o(.text) refers to switches.o(.text) for SWITCH_HAUT_READSTATE
+    program.o(.text) refers (Special) to utils.o(.text) for BLINK_R8_TIME
+    program.o(.text) refers to bumpers.o(.text) for BUMPERS_INIT
+    program.o(.text) refers to leds.o(.text) for LEDs_INIT
+    program.o(.text) refers to rk_config_moteur.o(.text) for MOTEUR_INIT
+    program.o(.text) refers to motors.o(.text) for MOTORS_ON
+    motors.o(.text) refers to rk_config_moteur.o(.text) for MOTEUR_DROIT_ON
+    startup.o(STACK) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup.o(HEAP) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup.o(RESET) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup.o(RESET) refers to startup.o(STACK) for StackMem
+    startup.o(RESET) refers to program.o(.text) for __main
+    startup.o(.text) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
+    startup.o(.text) refers to startup.o(HEAP) for HeapMem
+    startup.o(.text) refers to startup.o(STACK) for StackMem
+
+
+==============================================================================
+
+Removing Unused input sections from the image.
+
+    Removing startup.o(HEAP), (0 bytes).
+    Removing startup.o(.text), (24 bytes).
+
+2 unused section(s) (total 24 bytes) removed from the image.
+
+==============================================================================
+
+Image Symbol Table
+
+    Local Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    ../clib/heapaux.c                        0x00000000   Number         0  heapauxi.o ABSOLUTE
+    RTE\Device\LM3S9B92\Startup.s            0x00000000   Number         0  startup.o ABSOLUTE
+    dc.s                                     0x00000000   Number         0  dc.o ABSOLUTE
+    src\Bumpers.s                            0x00000000   Number         0  bumpers.o ABSOLUTE
+    src\Leds.s                               0x00000000   Number         0  leds.o ABSOLUTE
+    src\Motors.s                             0x00000000   Number         0  motors.o ABSOLUTE
+    src\Program.s                            0x00000000   Number         0  program.o ABSOLUTE
+    src\RK_Config_Moteur.s                   0x00000000   Number         0  rk_config_moteur.o ABSOLUTE
+    src\Switches.s                           0x00000000   Number         0  switches.o ABSOLUTE
+    src\Utils.s                              0x00000000   Number         0  utils.o ABSOLUTE
+    RESET                                    0x00000000   Section      632  startup.o(RESET)
+    NmiSR                                    0x00000271   Thumb Code     0  startup.o(RESET)
+    FaultISR                                 0x00000273   Thumb Code     0  startup.o(RESET)
+    IntDefaultHandler                        0x00000275   Thumb Code     0  startup.o(RESET)
+    .text                                    0x00000278   Section      132  leds.o(.text)
+    .text                                    0x000002fc   Section      276  utils.o(.text)
+    .text                                    0x00000410   Section       92  program.o(.text)
+    .text                                    0x0000046c   Section      100  bumpers.o(.text)
+    .text                                    0x000004d0   Section       88  switches.o(.text)
+    .text                                    0x00000528   Section      484  rk_config_moteur.o(.text)
+    .text                                    0x0000070c   Section       48  motors.o(.text)
+    .text                                    0x0000073c   Section        0  heapauxi.o(.text)
+    StackMem                                 0x20000000   Data           0  startup.o(STACK)
+    STACK                                    0x20000000   Section      256  startup.o(STACK)
+
+    Global Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    BuildAttributes$$THM_ISAv4$P$D$K$B$S$PE$A:L22UL41UL21$X:L11$S22US41US21$IEEE1$IW$~IW$USESV6$~STKCKD$USESV7$~SHL$OSPACE$ROPI$EBA8$STANDARDLIB$REQ8$EABIv2 0x00000000   Number         0  anon$$obj.o ABSOLUTE
+    __Vectors                                0x00000000   Data           0  startup.o(RESET)
+    Reset_Handler                            0x0000026d   Thumb Code     0  startup.o(RESET)
+    LEDs_INIT                                0x00000279   Thumb Code     0  leds.o(.text)
+    LEDs_ON                                  0x00000297   Thumb Code     0  leds.o(.text)
+    LEDs_OFF                                 0x000002a1   Thumb Code     0  leds.o(.text)
+    LED_DROITE_ON                            0x000002ab   Thumb Code     0  leds.o(.text)
+    LED_DROITE_OFF                           0x000002bb   Thumb Code     0  leds.o(.text)
+    LED_GAUCHE_ON                            0x000002c7   Thumb Code     0  leds.o(.text)
+    LED_GAUCHE_OFF                           0x000002d7   Thumb Code     0  leds.o(.text)
+    WAIT_SECOND                              0x000002fd   Thumb Code     0  utils.o(.text)
+    DISTANCE_TO_TIME_IN_CYCLE                0x00000311   Thumb Code     0  utils.o(.text)
+    WAIT_ASKED_TIME_IN_CYCLE                 0x00000325   Thumb Code     0  utils.o(.text)
+    BROWSE_ASKED_CM                          0x00000333   Thumb Code     0  utils.o(.text)
+    INTERACTIONS_TO_DISTANCE                 0x00000343   Thumb Code     0  utils.o(.text)
+    BLINK_R8_TIME                            0x00000365   Thumb Code     0  utils.o(.text)
+    CHECK_BUMPERS_AND_UPDATE_LEDS            0x00000383   Thumb Code     0  utils.o(.text)
+    CHECK_SWITCHES_AND_UPDATE_LEDS           0x000003d7   Thumb Code     0  utils.o(.text)
+    __main                                   0x00000411   Thumb Code     0  program.o(.text)
+    INIT_BUMPERS_ADRESS                      0x0000046d   Thumb Code     0  bumpers.o(.text)
+    BUMPERS_INIT                             0x00000483   Thumb Code     0  bumpers.o(.text)
+    BUMPER_GAUCHE_READSTATE                  0x0000049f   Thumb Code     0  bumpers.o(.text)
+    BUMPER_DROIT_READSTATE                   0x000004a9   Thumb Code     0  bumpers.o(.text)
+    SWITCH_HAUT_READSTATE                    0x000004e5   Thumb Code     0  switches.o(.text)
+    SWITCH_BAS_READSTATE                     0x00000509   Thumb Code     0  switches.o(.text)
+    MOTEUR_INIT                              0x00000529   Thumb Code     0  rk_config_moteur.o(.text)
+    MOTEUR_DROIT_ON                          0x0000062d   Thumb Code     0  rk_config_moteur.o(.text)
+    MOTEUR_DROIT_OFF                         0x00000639   Thumb Code     0  rk_config_moteur.o(.text)
+    MOTEUR_GAUCHE_ON                         0x00000645   Thumb Code     0  rk_config_moteur.o(.text)
+    MOTEUR_GAUCHE_OFF                        0x00000651   Thumb Code     0  rk_config_moteur.o(.text)
+    MOTEUR_DROIT_ARRIERE                     0x0000065d   Thumb Code     0  rk_config_moteur.o(.text)
+    MOTEUR_DROIT_AVANT                       0x00000667   Thumb Code     0  rk_config_moteur.o(.text)
+    MOTEUR_GAUCHE_ARRIERE                    0x00000671   Thumb Code     0  rk_config_moteur.o(.text)
+    MOTEUR_GAUCHE_AVANT                      0x0000067b   Thumb Code     0  rk_config_moteur.o(.text)
+    MOTEUR_DROIT_INVERSE                     0x00000685   Thumb Code     0  rk_config_moteur.o(.text)
+    MOTEUR_GAUCHE_INVERSE                    0x00000691   Thumb Code     0  rk_config_moteur.o(.text)
+    MOTORS_ON                                0x0000070d   Thumb Code     0  motors.o(.text)
+    MOTORS_OFF                               0x0000071d   Thumb Code     0  motors.o(.text)
+    FORWARD_MOTION                           0x0000072d   Thumb Code     0  motors.o(.text)
+    __use_two_region_memory                  0x0000073d   Thumb Code     2  heapauxi.o(.text)
+    __rt_heap_escrow$2region                 0x0000073f   Thumb Code     2  heapauxi.o(.text)
+    __rt_heap_expand$2region                 0x00000741   Thumb Code     2  heapauxi.o(.text)
+    TRAVEL_TIME_IN_CYCLE                     0x20000001   Number         0  utils.o ABSOLUTE
+    LEFT_BUMPER_CT_ADR                       0x20000005   Number         0  bumpers.o ABSOLUTE
+    LEFT_BUMPER_ST_ADR                       0x20001001   Number         0  bumpers.o ABSOLUTE
+    RIGHT_BUMPER_CT_ADR                      0x20001011   Number         0  bumpers.o ABSOLUTE
+    RIGHT_BUMPER_ST_ADR                      0x20001011   Number         0  bumpers.o ABSOLUTE
+
+
+
+==============================================================================
+
+Memory Map of the image
+
+  Image Entry point : 0x0000026d
+
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00000744, Max: 0xffffffff, ABSOLUTE)
+
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000744, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x00000000   0x00000000   0x00000278   Code   RO           26  * RESET               startup.o
+    0x00000278   0x00000278   0x00000084   Code   RO            1  * .text               leds.o
+    0x000002fc   0x000002fc   0x00000114   Code   RO            6  * .text               utils.o
+    0x00000410   0x00000410   0x0000005c   Code   RO            9  * .text               program.o
+    0x0000046c   0x0000046c   0x00000064   Code   RO           12  * .text               bumpers.o
+    0x000004d0   0x000004d0   0x00000058   Code   RO           15  * .text               switches.o
+    0x00000528   0x00000528   0x000001e4   Code   RO           18  * .text               rk_config_moteur.o
+    0x0000070c   0x0000070c   0x00000030   Code   RO           21  * .text               motors.o
+    0x0000073c   0x0000073c   0x00000006   Code   RO           34    .text               c_w.l(heapauxi.o)
+
+
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00000744, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
+
+    **** No section assigned to this execution region ****
+
+
+    Execution Region ER_ZI (Exec base: 0x20000000, Load base: 0x00000744, Size: 0x00000100, Max: 0xffffffff, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x20000000        -       0x00000100   Zero   RW           24    STACK               startup.o
+
+
+==============================================================================
+
+Image component sizes
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
+
+       100         30          0          0          0        208   bumpers.o
+       132         26          0          0          0        244   leds.o
+        48          0          0          0          0        192   motors.o
+        92          6          0          0          0        204   program.o
+       484        112          0          0          0        348   rk_config_moteur.o
+       632        622          0          0        256        220   startup.o
+        88         16          0          0          0        204   switches.o
+       276         26          0          0          0        260   utils.o
+
+    ----------------------------------------------------------------------
+      1852        838          0          0        256       1880   Object Totals
+         0          0          0          0          0          0   (incl. Generated)
+         0          0          0          0          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Member Name
+
+         6          0          0          0          0        152   heapauxi.o
+
+    ----------------------------------------------------------------------
+         8          0          0          0          0        152   Library Totals
+         2          0          0          0          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
+
+         6          0          0          0          0        152   c_w.l
+
+    ----------------------------------------------------------------------
+         8          0          0          0          0        152   Library Totals
+
+    ----------------------------------------------------------------------
+
+==============================================================================
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
+
+      1860        838          0          0        256       2032   Grand Totals
+      1860        838          0          0        256       2032   ELF Image Totals
+      1860        838          0          0          0          0   ROM Totals
+
+==============================================================================
+
+    Total RO  Size (Code + RO Data)                 1860 (   1.82kB)
+    Total RW  Size (RW Data + ZI Data)               256 (   0.25kB)
+    Total ROM Size (Code + RO Data + RW Data)       1860 (   1.82kB)
+
+==============================================================================
+

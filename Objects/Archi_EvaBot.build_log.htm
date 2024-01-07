@@ -1,0 +1,74 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.28.0.0
+Copyright (C) 2019 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: ibrahim ibmadi@hotmail.fr, ESIEE, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.28.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.12
+Assembler:       Armasm.exe V6.12
+Linker/Locator:  ArmLink.exe V6.12
+Library Manager: ArmAr.exe V6.12
+Hex Converter:   FromElf.exe V6.12
+CPU DLL:         SARMCM3.DLL V5.28.0.0
+Dialog DLL:      DLM.DLL V1.26.0.0
+Target DLL:      lmidk-agdi.dll V???
+Dialog DLL:      TLM.DLL V1.24.0.0
+ 
+<h2>Project:</h2>
+E:\Code\Archi_EvaBot\Archi_EvaBot.uvprojx
+Project File Date:  12/27/2023
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.12', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
+Rebuild target 'Target 1'
+assembling Bumpers.s...
+src\Bumpers.s(94): warning: A1581W: Added 2 bytes of padding at address 0x46
+assembling Motors.s...
+assembling Program.s...
+src\Program.s(89): warning: A1581W: Added 2 bytes of padding at address 0x56
+assembling Switches.s...
+assembling Leds.s...
+src\Leds.s(81): warning: A1581W: Added 2 bytes of padding at address 0x6a
+assembling Utils.s...
+src\Utils.s(189): warning: A1581W: Added 2 bytes of padding at address 0xfa
+assembling Startup.s...
+assembling RK_Config_Moteur.s...
+linking...
+Program Size: Code=1860 RO-data=0 RW-data=0 ZI-data=256  
+".\Objects\Archi_EvaBot.axf" - 0 Error(s), 4 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.5.1.pack
+                ARM.CMSIS.5.5.1
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.2.0
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.LM3S_DFP.1.1.0.pack
+                Keil.LM3S_DFP.1.1.0
+                Texas Instruments LM3S Series Device Support
+   * Component: Startup Version: 1.0.0
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_Target_1
+  C:\Users\ibmad\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include
+  C:\Users\ibmad\AppData\Local\Arm\Packs\Keil\LM3S_DFP\1.1.0\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.2.0
+
+   * Component: Keil::Device:Startup:1.0.0
+      Source file:   Device\Source\ARM\Startup.s
+Build Time Elapsed:  00:00:00
+</pre>
+</body>
+</html>
