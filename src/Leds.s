@@ -21,16 +21,16 @@ PIN4_5				EQU		0x30
 ;; init both right and left led
 LEDs_INIT
 		LDR r6, = GPIO_PORTF_BASE + GPIO_O_DIR
-        LDR r0, = PIN4_5 	
-        STR r0, [r6]
-		
-        LDR r6, = GPIO_PORTF_BASE + GPIO_O_DEN
-        LDR r0, = PIN4_5 		
-        STR r0, [r6]
- 
+	        LDR r0, = PIN4_5 	
+	        STR r0, [r6]
+			
+	        LDR r6, = GPIO_PORTF_BASE + GPIO_O_DEN
+	        LDR r0, = PIN4_5 		
+	        STR r0, [r6]
+	 
 		LDR r6, = GPIO_PORTF_BASE + GPIO_O_DR2R
-        LDR r0, = PIN4_5		
-        STR r0, [r6]
+	        LDR r0, = PIN4_5		
+	        STR r0, [r6]
 		
 		MOV r2, #0
 		
