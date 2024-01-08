@@ -53,53 +53,57 @@ ARM Macro Assembler    Page 1
    40 0000000A BF00            nop
    41 0000000C BF00            nop
    42 0000000E         
-   43 0000000E         ;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^PERIPHERAL INITIALIZATION
+   43 0000000E         RESTART_PROG                         ;; init must be don
+                                                            e again because it 
+                                                            also init adress va
+                                                            lues
+   44 0000000E         ;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^PERIPHERAL INITIALIZATION
                        S FOR "PHASE 1: SETUP"
-   44 0000000E F7FF FFFE       BL               BUMPERS_INIT
-   45 00000012 F7FF FFFE       BL               LEDs_INIT
-   46 00000016 F7FF FFFE       BL               SWITCHES_INIT
-   47 0000001A         
-   48 0000001A F7FF FFFE       BL               INIT_UTIL_address
-   49 0000001E         
-   50 0000001E         SETUP                                ;; Start of the SET
-                                                            UP phase
+   45 0000000E F7FF FFFE       BL               BUMPERS_INIT
+   46 00000012 F7FF FFFE       BL               LEDs_INIT
+   47 00000016 F7FF FFFE       BL               SWITCHES_INIT
+   48 0000001A         
 
 
 
 ARM Macro Assembler    Page 2 
 
 
-   51 0000001E F7FF FFFE       BL               LEDs_ON
-   52 00000022         
-   53 00000022 F7FF FFFE       BL               HANDLE_BUMPERS_INTERACTIONS
-   54 00000026 F7FF FFFE       BL               HANDLE_SWITCHES_INTERACTIONS
-   55 0000002A         
-   56 0000002A         ;; Check if swith 1 is pressed
-   57 0000002A 490D            LDR              r1, =SECOND_SWITCH_ST_ADR
-   58 0000002C 6809            LDR              r1, [r1]
-   59 0000002E 2901            CMP              r1, #1
-   60 00000030 D000            BEQ              MEASURE     ;; if switch 1 is p
+   49 0000001A F7FF FFFE       BL               INIT_UTIL_address
+   50 0000001E         
+   51 0000001E         SETUP                                ;; Start of the SET
+                                                            UP phase
+   52 0000001E F7FF FFFE       BL               LEDs_ON
+   53 00000022         
+   54 00000022 F7FF FFFE       BL               HANDLE_BUMPERS_INTERACTIONS
+   55 00000026 F7FF FFFE       BL               HANDLE_SWITCHES_INTERACTIONS
+   56 0000002A         
+   57 0000002A         ;; Check if swith 1 is pressed
+   58 0000002A 490D            LDR              r1, =SECOND_SWITCH_ST_ADR
+   59 0000002C 6809            LDR              r1, [r1]
+   60 0000002E 2901            CMP              r1, #1
+   61 00000030 D000            BEQ              MEASURE     ;; if switch 1 is p
                                                             ressed, start MEASU
                                                             RE step, else : sta
                                                             y in setup step
-   61 00000032         
-   62 00000032 E7F4            b                SETUP
-   63 00000034         
-   64 00000034         MEASURE                              ;; Start of the mea
+   62 00000032         
+   63 00000032 E7F4            b                SETUP
+   64 00000034         
+   65 00000034         MEASURE                              ;; Start of the mea
                                                             surement phase
-   65 00000034         ;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^PERIPHERAL INITIALIZATION
+   66 00000034         ;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^PERIPHERAL INITIALIZATION
                        S FOR "PHASE 2: MEASUREMENT ACTION"
-   66 00000034 F7FF FFFE       BL               MOTEUR_INIT
-   67 00000038         
-   68 00000038         ;; Turn off LEDs to indicate that configuration is no lo
+   67 00000034 F7FF FFFE       BL               MOTEUR_INIT
+   68 00000038         
+   69 00000038         ;; Turn off LEDs to indicate that configuration is no lo
                        nger possible
-   69 00000038 F7FF FFFE       BL               LEDs_OFF
-   70 0000003C         
-   71 0000003C F7FF FFFE       BL               INTERACTIONS_TO_DISTANCE ;; Con
+   70 00000038 F7FF FFFE       BL               LEDs_OFF
+   71 0000003C         
+   72 0000003C F7FF FFFE       BL               INTERACTIONS_TO_DISTANCE ;; Con
                                                             vert user interacti
                                                             ons into distance  
                                                             
-   72 00000040 F7FF FFFE       BL               DISTANCE_TO_TIME_IN_CYCLE ;; Co
+   73 00000040 F7FF FFFE       BL               DISTANCE_TO_TIME_IN_CYCLE ;; Co
                                                             nvert requested dis
                                                             tance into executio
                                                             n cycles and store 
@@ -107,33 +111,33 @@ ARM Macro Assembler    Page 2
                                                              address (label "TR
                                                             AVEL_TIME_IN_CYCLE"
                                                             )
-   73 00000044         
-   74 00000044         ;; Move the distance
-   75 00000044 F7FF FFFE       BL               MOTORS_ON   ;; TURN ON MOTORS
-   76 00000048 F7FF FFFE       BL               FORWARD_MOTION ;; MOVE FORWARD
-   77 0000004C         
-   78 0000004C         ;; Countdown based on the value of the dedicated address
+   74 00000044         
+   75 00000044         ;; Move the distance
+   76 00000044 F7FF FFFE       BL               MOTORS_ON   ;; TURN ON MOTORS
+   77 00000048 F7FF FFFE       BL               FORWARD_MOTION ;; MOVE FORWARD
+   78 0000004C         
+   79 0000004C         ;; Countdown based on the value of the dedicated address
                         (label "TRAVEL_TIME_IN_CYCLE") 
-   79 0000004C F7FF FFFE       BL               WAIT_ASKED_TIME_IN_CYCLE
-   80 00000050         
-   81 00000050         ;; End of the journey
-   82 00000050 F7FF FFFE       BL               MOTORS_OFF  ;; turn off motors
-   83 00000054         
-   84 00000054 F7FF FFFE       BL               LEDs_OFF    ;; turn off LEDs
-   85 00000058 E7FE            b                __main
-   86 0000005A         
-   87 0000005A         END_PROG
-   88 0000005A BF00            nop
-   89 0000005C                 END
-              400FE108 
-              00000000 
-Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --depend=.\ob
+   80 0000004C F7FF FFFE       BL               WAIT_ASKED_TIME_IN_CYCLE
+   81 00000050         
+   82 00000050         ;; End of the journey
+   83 00000050 F7FF FFFE       BL               MOTORS_OFF  ;; turn off motors
+   84 00000054         
+   85 00000054 F7FF FFFE       BL               LEDs_OFF    ;; turn off LEDs
+   86 00000058 E7D9            b                RESTART_PROG
+   87 0000005A         
+   88 0000005A         END_PROG
+   89 0000005A BF00            nop
 
 
 
 ARM Macro Assembler    Page 3 
 
 
+   90 0000005C                 END
+              400FE108 
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --depend=.\ob
 jects\program.d -o.\objects\program.o -I.\RTE\_Target_1 -IC:\Users\ibmad\AppDat
 a\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include -IC:\Users\ibmad\AppData\L
 ocal\Arm\Packs\Keil\LM3S_DFP\1.1.0\Device\Include --predefine="__EVAL SETA 1" -
@@ -157,7 +161,7 @@ END_PROG 0000005A
 
 Symbol: END_PROG
    Definitions
-      At line 87 in file src\Program.s
+      At line 88 in file src\Program.s
    Uses
       None
 Comment: END_PROG unused
@@ -165,17 +169,25 @@ MEASURE 00000034
 
 Symbol: MEASURE
    Definitions
-      At line 64 in file src\Program.s
+      At line 65 in file src\Program.s
    Uses
-      At line 60 in file src\Program.s
+      At line 61 in file src\Program.s
 Comment: MEASURE used once
+RESTART_PROG 0000000E
+
+Symbol: RESTART_PROG
+   Definitions
+      At line 43 in file src\Program.s
+   Uses
+      At line 86 in file src\Program.s
+Comment: RESTART_PROG used once
 SETUP 0000001E
 
 Symbol: SETUP
    Definitions
-      At line 50 in file src\Program.s
+      At line 51 in file src\Program.s
    Uses
-      At line 62 in file src\Program.s
+      At line 63 in file src\Program.s
 Comment: SETUP used once
 __main 00000000
 
@@ -184,9 +196,8 @@ Symbol: __main
       At line 33 in file src\Program.s
    Uses
       At line 6 in file src\Program.s
-      At line 85 in file src\Program.s
-
-5 symbols
+Comment: __main used once
+6 symbols
 
 
 
@@ -214,7 +225,7 @@ Symbol: BUMPERS_INIT
    Definitions
       At line 19 in file src\Program.s
    Uses
-      At line 44 in file src\Program.s
+      At line 45 in file src\Program.s
 Comment: BUMPERS_INIT used once
 DISTANCE_TO_TIME_IN_CYCLE 00000000
 
@@ -222,7 +233,7 @@ Symbol: DISTANCE_TO_TIME_IN_CYCLE
    Definitions
       At line 13 in file src\Program.s
    Uses
-      At line 72 in file src\Program.s
+      At line 73 in file src\Program.s
 Comment: DISTANCE_TO_TIME_IN_CYCLE used once
 FIRST_SWITCH_ST_ADR 00000000
 
@@ -238,7 +249,7 @@ Symbol: FORWARD_MOTION
    Definitions
       At line 24 in file src\Program.s
    Uses
-      At line 76 in file src\Program.s
+      At line 77 in file src\Program.s
 Comment: FORWARD_MOTION used once
 HANDLE_BUMPERS_INTERACTIONS 00000000
 
@@ -246,7 +257,7 @@ Symbol: HANDLE_BUMPERS_INTERACTIONS
    Definitions
       At line 9 in file src\Program.s
    Uses
-      At line 53 in file src\Program.s
+      At line 54 in file src\Program.s
 Comment: HANDLE_BUMPERS_INTERACTIONS used once
 HANDLE_SWITCHES_INTERACTIONS 00000000
 
@@ -254,7 +265,7 @@ Symbol: HANDLE_SWITCHES_INTERACTIONS
    Definitions
       At line 10 in file src\Program.s
    Uses
-      At line 54 in file src\Program.s
+      At line 55 in file src\Program.s
 Comment: HANDLE_SWITCHES_INTERACTIONS used once
 INIT_UTIL_address 00000000
 
@@ -262,7 +273,7 @@ Symbol: INIT_UTIL_address
    Definitions
       At line 32 in file src\Program.s
    Uses
-      At line 48 in file src\Program.s
+      At line 49 in file src\Program.s
 Comment: INIT_UTIL_address used once
 INTERACTIONS_TO_DISTANCE 00000000
 
@@ -276,7 +287,7 @@ External symbols
    Definitions
       At line 11 in file src\Program.s
    Uses
-      At line 71 in file src\Program.s
+      At line 72 in file src\Program.s
 Comment: INTERACTIONS_TO_DISTANCE used once
 LEDs_INIT 00000000
 
@@ -284,7 +295,7 @@ Symbol: LEDs_INIT
    Definitions
       At line 17 in file src\Program.s
    Uses
-      At line 45 in file src\Program.s
+      At line 46 in file src\Program.s
 Comment: LEDs_INIT used once
 LEDs_OFF 00000000
 
@@ -292,8 +303,8 @@ Symbol: LEDs_OFF
    Definitions
       At line 27 in file src\Program.s
    Uses
-      At line 69 in file src\Program.s
-      At line 84 in file src\Program.s
+      At line 70 in file src\Program.s
+      At line 85 in file src\Program.s
 
 LEDs_ON 00000000
 
@@ -301,7 +312,7 @@ Symbol: LEDs_ON
    Definitions
       At line 26 in file src\Program.s
    Uses
-      At line 51 in file src\Program.s
+      At line 52 in file src\Program.s
 Comment: LEDs_ON used once
 MOTEUR_INIT 00000000
 
@@ -309,7 +320,7 @@ Symbol: MOTEUR_INIT
    Definitions
       At line 18 in file src\Program.s
    Uses
-      At line 66 in file src\Program.s
+      At line 67 in file src\Program.s
 Comment: MOTEUR_INIT used once
 MOTORS_OFF 00000000
 
@@ -317,7 +328,7 @@ Symbol: MOTORS_OFF
    Definitions
       At line 23 in file src\Program.s
    Uses
-      At line 82 in file src\Program.s
+      At line 83 in file src\Program.s
 Comment: MOTORS_OFF used once
 MOTORS_ON 00000000
 
@@ -325,7 +336,7 @@ Symbol: MOTORS_ON
    Definitions
       At line 22 in file src\Program.s
    Uses
-      At line 75 in file src\Program.s
+      At line 76 in file src\Program.s
 Comment: MOTORS_ON used once
 SECOND_SWITCH_ST_ADR 00000000
 
@@ -339,7 +350,7 @@ ARM Macro Assembler    Page 3 Alphabetic symbol ordering
 External symbols
 
    Uses
-      At line 57 in file src\Program.s
+      At line 58 in file src\Program.s
 Comment: SECOND_SWITCH_ST_ADR used once
 SWITCHES_INIT 00000000
 
@@ -347,7 +358,7 @@ Symbol: SWITCHES_INIT
    Definitions
       At line 20 in file src\Program.s
    Uses
-      At line 46 in file src\Program.s
+      At line 47 in file src\Program.s
 Comment: SWITCHES_INIT used once
 TRAVEL_TIME_IN_CYCLE 00000000
 
@@ -363,7 +374,7 @@ Symbol: WAIT_ASKED_TIME_IN_CYCLE
    Definitions
       At line 12 in file src\Program.s
    Uses
-      At line 79 in file src\Program.s
+      At line 80 in file src\Program.s
 Comment: WAIT_ASKED_TIME_IN_CYCLE used once
 18 symbols
-360 symbols in table
+361 symbols in table

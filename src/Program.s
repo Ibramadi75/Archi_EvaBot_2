@@ -40,6 +40,7 @@ __main
 		nop
 		nop
 		
+RESTART_PROG ;; init must be done again because it also init adress values
 		;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^PERIPHERAL INITIALIZATIONS FOR "PHASE 1: SETUP"
 		BL BUMPERS_INIT
 		BL LEDs_INIT
@@ -82,7 +83,7 @@ MEASURE	;; Start of the measurement phase
 		BL MOTORS_OFF	;; turn off motors
 
 		BL LEDs_OFF	;; turn off LEDs
-		b __main
+		b RESTART_PROG
 
 END_PROG
 		nop
