@@ -82,7 +82,7 @@ MEASURE	;; Start of the measurement phase
 		BL MOTORS_OFF	;; turn off motors
 
 		BL LEDs_OFF	;; turn off LEDs
-		b END_PROG
+		b __main
 
 END_PROG
 		nop

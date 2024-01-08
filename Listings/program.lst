@@ -120,7 +120,7 @@ ARM Macro Assembler    Page 2
    82 00000050 F7FF FFFE       BL               MOTORS_OFF  ;; turn off motors
    83 00000054         
    84 00000054 F7FF FFFE       BL               LEDs_OFF    ;; turn off LEDs
-   85 00000058 E7FF            b                END_PROG
+   85 00000058 E7FE            b                __main
    86 0000005A         
    87 0000005A         END_PROG
    88 0000005A BF00            nop
@@ -159,8 +159,8 @@ Symbol: END_PROG
    Definitions
       At line 87 in file src\Program.s
    Uses
-      At line 85 in file src\Program.s
-Comment: END_PROG used once
+      None
+Comment: END_PROG unused
 MEASURE 00000034
 
 Symbol: MEASURE
@@ -184,7 +184,8 @@ Symbol: __main
       At line 33 in file src\Program.s
    Uses
       At line 6 in file src\Program.s
-Comment: __main used once
+      At line 85 in file src\Program.s
+
 5 symbols
 
 

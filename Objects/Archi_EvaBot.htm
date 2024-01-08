@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Archi_EvaBot.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Archi_EvaBot.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6120001: Last Updated: Sun Jan  7 20:45:34 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6120001: Last Updated: Mon Jan  8 17:10:00 2024
 <BR><P>
 <H3>Maximum Stack Usage =          0 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -58,7 +58,8 @@ Functions with no stack information
 <P>
 <H3>
 Mutually Recursive functions
-</H3> <LI><a href="#[1]">NmiSR</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[1]">NmiSR</a><BR>
+</H3> <LI><a href="#[e]">__main</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[e]">__main</a><BR>
+ <LI><a href="#[1]">NmiSR</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[1]">NmiSR</a><BR>
  <LI><a href="#[2]">FaultISR</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[2]">FaultISR</a><BR>
  <LI><a href="#[3]">IntDefaultHandler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[3]">IntDefaultHandler</a><BR>
 </UL>
@@ -135,6 +136,7 @@ Global Symbols
 <LI><a href="#[25]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FORWARD_MOTION
 <LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DISTANCE_TO_TIME_IN_CYCLE
 <LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BUMPERS_INIT
+<LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 <LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;INTERACTIONS_TO_DISTANCE
 <LI><a href="#[b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;INIT_UTIL_address
 <LI><a href="#[6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LEDs_OFF
@@ -142,6 +144,7 @@ Global Symbols
 <LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LEDs_INIT
 </UL>
 <BR>[Called By]<UL><LI><a href="#[0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Reset_Handler
+<LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__main
 </UL>
 
 <P><STRONG><a name="[f]"></a>INIT_BUMPERS_address</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, bumpers.o(.text))
